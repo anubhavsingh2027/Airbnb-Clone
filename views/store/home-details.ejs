@@ -1,0 +1,122 @@
+<%-include('../partials/head') %>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+ <%- include('../partials/header') %>
+<main class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+<!-- Hero Image -->
+<div class="w-full h-96 rounded-2xl overflow-hidden shadow-lg">
+  <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-full object-cover">
+</div>
+
+<!-- Title, Location & Rating -->
+<div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <!-- Left: Title + Location -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-900"><%= home.housename %></h1>
+    <p class="flex items-center gap-2 text-gray-600 mt-2">
+      <!-- Pin Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-5 w-5 text-red-500"
+           fill="currentColor"
+           viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+              d="M5.05 3.05a7 7 0 119.9 9.9l-4.243 4.243a.75.75 0 01-1.06 0L5.05 12.95a7 7 0 010-9.9zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
+              clip-rule="evenodd" />
+      </svg>
+      <span class="text-base font-medium"><%= home.location %></span>
+    </p>
+  </div>
+
+  <!-- Right: Rating + Favourite -->
+  <div class="flex items-center gap-3">
+    <!-- Rating Badge -->
+    <div class="flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full shadow-sm">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-5 w-5 text-yellow-500"
+           fill="currentColor"
+           viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+      </svg>
+      <span class="font-semibold"><%= home.rating %> / 5</span>
+    </div>
+
+    <!-- Add to Favourite Button -->
+    <%-include('../partials/favourite')%> <span>Add to Favourite</span>
+
+
+  </div>
+</div>
+
+
+
+  <!-- Main Details -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- Left: Info -->
+    <div class="lg:col-span-2 space-y-6">
+
+      <!-- Price -->
+      <div class="flex items-center justify-between border-b pb-4">
+        <h2 class="text-2xl font-bold text-gray-900">Entire Home</h2>
+        <p class="text-lg font-semibold text-red-500">Rs <%= home.price %> <span class="text-gray-500 text-sm">/ night</span></p>
+      </div>
+
+      <!-- Description -->
+      <div class="space-y-3">
+        <h3 class="text-xl font-semibold text-gray-800">Description</h3>
+        <p class="text-gray-600 leading-relaxed">
+           <%= home.description %>
+        </p>
+      </div>
+
+      <!-- Amenities -->
+      <div class="space-y-3">
+        <h3 class="text-xl font-semibold text-gray-800">Amenities</h3>
+        <ul class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-700 text-sm">
+          <li class="flex items-center gap-2">✅ Free WiFi</li>
+          <li class="flex items-center gap-2">✅ Air Conditioning</li>
+          <li class="flex items-center gap-2">✅ Fully Equipped Kitchen</li>
+          <li class="flex items-center gap-2">✅ Free Parking</li>
+          <li class="flex items-center gap-2">✅ Washing Machine</li>
+          <li class="flex items-center gap-2">✅ 24/7 Security</li>
+        </ul>
+      </div>
+
+      <!-- Reviews (fake) -->
+      <div class="space-y-3">
+        <h3 class="text-xl font-semibold text-gray-800">Guest Reviews</h3>
+        <div class="space-y-4">
+          <div class="p-4 border rounded-xl shadow-sm">
+            <p class="font-semibold">Amit Sharma ⭐⭐⭐⭐⭐</p>
+            <p class="text-gray-600 text-sm mt-1">“Amazing stay! The host was super friendly and the location is perfect.”</p>
+          </div>
+          <div class="p-4 border rounded-xl shadow-sm">
+            <p class="font-semibold">Priya Verma ⭐⭐⭐⭐☆</p>
+            <p class="text-gray-600 text-sm mt-1">“Very comfortable and clean. Definitely coming back next time.”</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <!-- Host Info -->
+  <section class="bg-gray-50 border rounded-2xl p-6 shadow-md">
+    <h3 class="text-xl font-semibold text-gray-800 mb-3">Hosted by Rohan Mehta</h3>
+    <p class="text-gray-600 text-sm mb-4">
+      Rohan is a Superhost with 5+ years of experience hosting guests across India.
+      Passionate about travel and ensuring guests feel at home. Available 24/7 for assistance.
+    </p>
+    <button class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-5 py-2 rounded-lg shadow-sm transition-all duration-300">
+      Contact Host
+    </button>
+  </section>
+
+</main>
+
+ </body>
+</html>

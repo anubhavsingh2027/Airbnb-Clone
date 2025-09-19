@@ -1,0 +1,220 @@
+<%- include('../partials/head') %>
+
+</head>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-white to-pink-50 py-8 px-4">
+    <main class="container mx-auto max-w-2xl">
+      <!-- Logo -->
+      <div class="text-center mb-8">
+        <a href="/" class="inline-block transform hover:scale-105 transition-transform duration-300">
+          <img src="https://th.bing.com/th/id/R.d97d73f5e73dfe85f5cce6558429ebb5?rik=6Y393%2b4rAkA2Xg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fairbnb-logo-png-airbnb-logo-1600.png&ehk=WAmNzwdvuNRieYe57EPvJlUkIJzLt9Bd0hT0HaEgsvs%3d&risl=&pid=ImgRaw&r=0"
+               alt="Airbnb Logo" class="h-12 w-auto mx-auto mb-2"/>
+        </a>
+      </div>
+
+      <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-red-100 p-8 transform hover:scale-[1.01] transition-all duration-300">
+        <header class="text-center space-y-2 mb-8">
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">Create Your Account</h1>
+          <p class="text-gray-500">Join our community and start your journey</p>
+        </header>
+
+        <form action="/signup" method="POST" class="space-y-6">
+
+       
+        <%- include('../partials/errors') %>
+
+        <!-- Name fields with enhanced styling -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="relative group">
+            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-hover:text-red-400 transition-colors duration-200">
+                <i class="fas fa-user"></i>
+              </span>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="John"
+                value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-200
+                       group-hover:border-red-300 focus:border-red-400 focus:ring-2
+                       focus:ring-red-100 text-gray-700 placeholder-gray-400
+                       transition-all duration-200"
+                required />
+            </div>
+          </div>
+
+          <div class="relative group">
+            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-hover:text-red-400 transition-colors duration-200">
+                <i class="fas fa-user"></i>
+              </span>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                placeholder="Doe"
+                class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-200
+                       group-hover:border-red-300 focus:border-red-400 focus:ring-2
+                       focus:ring-red-100 text-gray-700 placeholder-gray-400
+                       transition-all duration-200" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Email field with enhanced styling -->
+        <div class="relative group">
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-hover:text-red-400 transition-colors duration-200">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="<%= oldInput.email ? oldInput.email : '' %>"
+              placeholder="your.email@example.com"
+              class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-200
+                     group-hover:border-red-300 focus:border-red-400 focus:ring-2
+                     focus:ring-red-100 text-gray-700 placeholder-gray-400
+                     transition-all duration-200"
+              required />
+          </div>
+        </div>
+
+        <!-- Password fields with enhanced styling -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="relative group">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-hover:text-red-400 transition-colors duration-200">
+                <i class="fas fa-lock"></i>
+              </span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-200
+                       group-hover:border-red-300 focus:border-red-400 focus:ring-2
+                       focus:ring-red-100 text-gray-700 placeholder-gray-400
+                       transition-all duration-200"
+                required/>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-hover:text-red-400 transition-colors duration-200">
+                <i class="fas fa-lock"></i>
+              </span>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="••••••••"
+                class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-200
+                       group-hover:border-red-300 focus:border-red-400 focus:ring-2
+                       focus:ring-red-100 text-gray-700 placeholder-gray-400
+                       transition-all duration-200"
+                required/>
+            </div>
+          </div>
+        </div>
+
+        <!-- User type selection with enhanced styling -->
+        <div class="bg-gray-50 rounded-xl p-6 space-y-3">
+          <label class="block text-sm font-medium text-gray-700">I want to...</label>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative">
+              <input type="radio" id="guest" name="userType" value="guest" class="peer hidden" checked="<% oldInput.userType === 'guest'%>" />
+              <label for="guest" class="block cursor-pointer rounded-lg border-2 bg-white p-4
+                                      peer-checked:border-red-500 peer-checked:bg-red-50
+                                      hover:border-red-200 transition-all duration-200">
+                <div class="flex items-start">
+                  <div class="flex h-5 items-center">
+                    <div class="rounded-full border-2 border-gray-300 peer-checked:border-red-500 w-4 h-4 flex items-center justify-center">
+                      <div class="hidden peer-checked:block w-2 h-2 bg-red-500 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-semibold text-gray-900">Join as Guest</h3>
+                    <p class="text-xs text-gray-500 mt-1">Book amazing places</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="relative">
+              <input type="radio" id="host" name="userType" value="host" class="peer hidden" checked="<% oldInput.userType === 'host'%>" />
+              <label for="host" class="block cursor-pointer rounded-lg border-2 bg-white p-4
+                                     peer-checked:border-red-500 peer-checked:bg-red-50
+                                     hover:border-red-200 transition-all duration-200">
+                <div class="flex items-start">
+                  <div class="flex h-5 items-center">
+                    <div class="rounded-full border-2 border-gray-300 peer-checked:border-red-500 w-4 h-4 flex items-center justify-center">
+                      <div class="hidden peer-checked:block w-2 h-2 bg-red-500 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-semibold text-gray-900">Become a Host</h3>
+                    <p class="text-xs text-gray-500 mt-1">List your property</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms and conditions with enhanced styling -->
+        <div class="flex items-start space-x-3 p-4 rounded-lg bg-gray-50">
+          <div class="flex items-center h-5">
+            <input type="checkbox" name="terms" id="terms" required
+                   class="w-4 h-4 rounded border-gray-300 text-red-500 focus:ring-red-400
+                          transition-colors duration-200"/>
+          </div>
+          <div class="ml-3">
+            <label for="terms" class="text-sm text-gray-600">
+              I accept the <a href="#" class="text-red-500 hover:text-red-600 font-medium hover:underline">Terms and Conditions</a>
+            </label>
+            <p class="mt-1 text-xs text-gray-500">By creating an account, you agree to our privacy policy and terms of service.</p>
+          </div>
+        </div>
+
+        <!-- Submit button with enhanced styling -->
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-4 rounded-lg font-medium
+                       hover:from-red-600 hover:to-pink-600 transform hover:-translate-y-0.5
+                       transition-all duration-200 focus:outline-none focus:ring-2
+                       focus:ring-red-400 focus:ring-offset-2 shadow-md
+                       flex items-center justify-center space-x-2">
+          <span>Create Account</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Divider -->
+        <div class="relative py-3">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 bg-white text-sm text-gray-500">or</span>
+          </div>
+        </div>
+
+        <!-- Login link with enhanced styling -->
+        <p class="text-center text-gray-600">
+          Already have an account?
+          <a href="/login" class="text-red-500 hover:text-red-600 font-medium hover:underline ml-1">Sign in</a>
+        </p>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

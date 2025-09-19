@@ -1,0 +1,149 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+   <%- include('../partials/header') %>
+
+  <main class="max-w-6xl mx-auto mt-12 px-6">
+    <div class="bg-white rounded-lg shadow-lg p-8 grid gap-4 sm:grid-cols-2 sm:items-center">
+      <div>
+        <h1 class="text-red-600 text-3xl font-bold mb-1">Your Favourites</h1>
+        <p class="text-gray-600">Manage your saved homes — search, sort and book quickly.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+        <div class="flex items-center bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/>
+          </svg>
+          <input id="search" type="search" placeholder="Search by name or location" class="bg-transparent outline-none text-gray-700" aria-label="Search favourites">
+        </div>
+
+        <select id="sort" aria-label="Sort favourites" class="border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm">
+          <option value="default">Sort: Recommended</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating-desc">Rating: High → Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Home Listings -->
+    <% if (!favouriteList || favouriteList.length === 0) { %>
+      <div class="mt-12 bg-white rounded-lg p-10 text-center shadow-sm">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-3">No favourites yet</h2>
+        <p class="text-gray-600 mb-6">Browse homes and add them to your favourites to see them here.</p>
+        <a href="/user/home-list" class="inline-block bg-red-500 text-white px-5 py-2 rounded-lg shadow hover:bg-red-600">Browse Homes</a>
+      </div>
+    <% } else { %>
+
+    <ul id="homes" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% favouriteList.forEach(home => { %>
+        <li class="home-card bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+            data-name="<%= (home.housename || '').toString().toLowerCase() %>"
+            data-location="<%= (home.location || '').toString().toLowerCase() %>"
+            data-price="<%= Number(home.price || 0) %>"
+            data-rating="<%= Number(home.rating || 0) %>">
+
+          <!-- Image -->
+          <div class="relative h-52">
+            <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-full object-cover">
+
+            <!-- Rating Badge -->
+            <div class="absolute bottom-3 left-3 flex items-center gap-1 bg-yellow-400 text-gray-900 text-sm font-semibold px-3 py-1 rounded-full shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span><%= home.rating || '0' %> / 5</span>
+            </div>
+
+            <!-- Remove favourite -->
+            <form action="/user/favourite/remove/<%= home._id %>" method="POST" class="absolute top-3 right-3">
+              <button type="submit" class="bg-white/80 backdrop-blur-sm p-2 rounded-full border border-gray-200 hover:bg-white shadow-sm" aria-label="Remove from favourites">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 18.657 3.172 11.83a4 4 0 010-5.656z"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Content -->
+          <div class="p-5 space-y-2">
+            <h2 class="text-gray-900 text-lg font-bold truncate" title="<%= home.housename %>">
+              <%= home.housename %>
+            </h2>
+
+            <p class="text-gray-600 text-sm flex items-center gap-2">
+              <span class="font-semibold">📍</span>
+              <span class="truncate"><%= home.location %></span>
+            </p>
+
+            <p class="text-gray-800 text-sm font-medium">
+              <span class="font-semibold">💰</span>
+              <span class="text-red-500 font-bold">Rs <%= home.price %></span> / night
+            </p>
+
+            <div class="flex gap-2 mt-3">
+
+              <a href="/user/booking/<%=home._id %>"  class="book-btn flex-1 bg-gradient-to-r from-red-500 to-pink-500 text-white py-2 rounded-xl text-sm font-semibold shadow hover:from-red-600 hover:to-pink-600 focus:outline-none text-center">BOOK </a>
+
+
+
+              <a href="/user/homes/<%= home._id %>" class="inline-block px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50">
+                View
+              </a>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+    <% } %>
+
+
+
+  </main>
+
+<%- include('../partials/footer') %>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById('search');
+      const sortSelect = document.getElementById('sort');
+      const homesList = Array.from(document.querySelectorAll('.home-card'));
+
+      function filterAndSort() {
+        const q = searchInput.value.trim().toLowerCase();
+        const sort = sortSelect.value;
+
+        let visible = homesList.filter(el => {
+          const name = el.dataset.name || '';
+          const location = el.dataset.location || '';
+          const match = !q || name.includes(q) || location.includes(q);
+          el.style.display = match ? '' : 'none';
+          return match;
+        });
+
+        if (sort !== 'default') {
+          visible.sort((a, b) => {
+            if (sort === 'price-asc') return Number(a.dataset.price) - Number(b.dataset.price);
+            if (sort === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price);
+            if (sort === 'rating-desc') return Number(b.dataset.rating) - Number(a.dataset.rating);
+            return 0;
+          });
+          // reorder DOM
+          const parent = document.getElementById('homes');
+          visible.forEach(node => parent.appendChild(node));
+        }
+      }
+
+      searchInput.addEventListener('input', filterAndSort);
+      sortSelect.addEventListener('change', filterAndSort);
+
+
+
+      // initial filter
+      filterAndSort();
+    })();
+  </script>
+</body>
+</html>

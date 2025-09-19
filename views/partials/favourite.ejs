@@ -1,0 +1,11 @@
+<form action="/user/favourite" method="post" class="inline">
+  <!-- Hidden Home ID -->
+  <input type="hidden" name="id" value="<%= home._id %>" />
+
+  <!-- Button -->
+  <button type="submit" class="bg-white/80 backdrop-blur-sm p-2 rounded-full border border-gray-200 hover:bg-white shadow-sm" aria-label="Remove from favourites">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 18.657 3.172 11.83a4 4 0 010-5.656z"/>
+                </svg>
+              </button>
+</form>

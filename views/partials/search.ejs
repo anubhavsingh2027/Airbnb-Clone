@@ -1,0 +1,27 @@
+
+
+<!-- JS -->
+<script>
+  // ✅ Toggle mobile menu
+  function toggleMobileMenu() {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  }
+
+  // ✅ Search filter
+  const searchInput = document.getElementById("search");
+  const homes = document.querySelectorAll(".home-card");
+
+  searchInput.addEventListener("input", function () {
+    const q = searchInput.value.trim().toLowerCase();
+
+    homes.forEach(home => {
+      const name = home.dataset.name || "";
+      const location = home.dataset.location || "";
+      if (name.includes(q) || location.includes(q)) {
+        home.style.display = "";
+      } else {
+        home.style.display = "none";
+      }
+    });
+  });
+</script>

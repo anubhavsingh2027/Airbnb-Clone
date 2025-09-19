@@ -1,0 +1,84 @@
+<%-include('../partials/head') %>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-white to-pink-50 flex items-center justify-center p-4">
+  <main class="w-full max-w-md transform transition-all duration-300 hover:scale-[1.01]">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <a href="/" class="inline-block">
+        <img src="https://th.bing.com/th/id/R.d97d73f5e73dfe85f5cce6558429ebb5?rik=6Y393%2b4rAkA2Xg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fairbnb-logo-png-airbnb-logo-1600.png&ehk=WAmNzwdvuNRieYe57EPvJlUkIJzLt9Bd0hT0HaEgsvs%3d&risl=&pid=ImgRaw&r=0"
+             alt="Airbnb Logo" class="h-12 w-auto mx-auto mb-2"/>
+      </a>
+    </div>
+
+    <!-- Login Form Card -->
+    <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-red-100 p-8 space-y-6">
+      <header class="text-center space-y-2">
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">Welcome back</h1>
+        <p class="text-gray-500">Sign in to continue your journey</p>
+      </header>
+
+      <form action="/postLogin" method="post" class="space-y-5">
+
+        <%- include('../partials/errors') %>
+        <div class="space-y-4">
+          <div class="relative">
+            <input type="email"
+            name="email"
+             placeholder="you@example.com"
+              required
+                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-400 focus:ring-2 focus:ring-red-100 text-gray-700 placeholder-gray-400 transition-all duration-200"
+            />
+            <span class="absolute right-3 top-3 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="relative">
+            <input type="password" name="password" required placeholder="Enter your password"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-400 focus:ring-2 focus:ring-red-100 text-gray-700 placeholder-gray-400 transition-all duration-200"
+            />
+            <span class="absolute right-3 top-3 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" name="remember" class="w-4 h-4 rounded border-gray-300 text-red-500 focus:ring-red-400"/>
+            <span class="text-sm text-gray-600">Remember me</span>
+          </label>
+          <a href="#" class="text-sm text-red-500 hover:text-red-600 hover:underline">Forgot password?</a>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-3 px-4 rounded-lg font-medium
+                       hover:from-red-600 hover:to-pink-600 transform hover:-translate-y-0.5 transition-all duration-200
+                       focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 shadow-md">
+          Sign in
+        </button>
+      </form>
+
+      <div class="relative py-3">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-200"></div>
+        </div>
+        <div class="relative flex justify-center">
+          <span class="px-4 bg-white text-sm text-gray-500">or</span>
+        </div>
+      </div>
+
+      <footer class="text-center space-y-4">
+        <p class="text-gray-600">
+          Don't have an account?
+          <a href="/signup" class="text-red-500 hover:text-red-600 font-medium hover:underline">Create one</a>
+        </p>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
