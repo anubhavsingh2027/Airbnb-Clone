@@ -43,7 +43,7 @@ exports.getfavouriteList=async (req,res,next)=>{
 };
 
 exports.postfavouriteList= async (req,res,next)=>{
-const  homeId=req.body.id;
+const  homeId=req.params.homeId;
 const  userId=req.session.user._id;
 const user= await User.findById(userId);
 if(!user.favourites.includes(homeId)){
