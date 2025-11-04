@@ -20,7 +20,7 @@ exports.getSignUp=(req,res,next)=>{
 }
 
 
-export const postSignUp = [
+exports. postSignUp = [
   // ✅ Validations
   check("firstName")
     .trim()
