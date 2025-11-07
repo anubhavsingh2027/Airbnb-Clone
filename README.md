@@ -10,6 +10,7 @@ It includes account management, property listings, booking system, and a respons
 https://airbnb-clone-1u1y.onrender.com/
 
 ### 🖼️ Preview
+
 <p align="center">
   <img src="https://todo-app-jade-six-65.vercel.app/airbnbImg.png" alt="Airbnb Clone Preview" width="800" />
 </p>
